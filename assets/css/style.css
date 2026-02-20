@@ -630,6 +630,93 @@ section {
   font-weight: 300;
 }
 
+/* NEWS/ANNOUNCEMENTS SECTION */
+.news-sec {
+  background: var(--parchment);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.news-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  border-left: 4px solid var(--forest-light);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--sh-warm);
+}
+
+.news-badge {
+  display: inline-block;
+  background: color-mix(in srgb, var(--gold) 15%, transparent);
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.news-badge-success {
+  background: color-mix(in srgb, var(--forest-light) 15%, transparent);
+  color: var(--forest-light);
+}
+
+.news-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--forest);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.news-date {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  margin-bottom: 16px;
+}
+
+.news-excerpt {
+  font-size: 0.93rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.news-excerpt:last-of-type {
+  margin-bottom: 0;
+}
+
+.news-cta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.news-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--forest-light);
+  transition: color 0.2s;
+}
+
+.news-link:hover {
+  color: var(--gold);
+}
+
 /* ABOUT SECTION */
 .about-sec {
   background: var(--white);
@@ -1062,6 +1149,137 @@ section {
   transform: translateY(-2px);
 }
 
+/* ── PARISH HALL SECTION ───────────────────────────────── */
+.hall-sec {
+  background: var(--white);
+}
+
+.hall-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 48px;
+}
+
+.hall-img-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px var(--sh-warm);
+  margin-bottom: 16px;
+}
+
+.hall-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.hall-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.hf-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.hf-text {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  font-weight: 400;
+}
+
+.hall-h {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hall-p {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.hall-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+.hall-subh {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 12px;
+}
+
+.hall-booking-box {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--forest-light);
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 28px;
+}
+
+.hb-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 16px;
+}
+
+.hb-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hb-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.hb-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  min-width: 80px;
+}
+
+.hb-val {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+}
+
+.hb-val a {
+  color: var(--forest-light);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.hb-val a:hover {
+  color: var(--gold);
+}
+
 /* FOOTER */
 footer {
   background: var(--ink);
@@ -1184,6 +1402,20 @@ footer {
   .hero-scroll {
     left: 28px;
   }
+
+  .hall-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hall-visual {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1215,5 +1447,19 @@ footer {
 
   .mary-row {
     grid-template-columns: 80px 1fr;
+  }
+
+  .hall-features {
+    grid-template-columns: 1fr;
+  }
+
+  .hb-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .hb-label {
+    min-width: auto;
   }
 }
