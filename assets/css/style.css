@@ -221,7 +221,7 @@ img {
 .hero-photo {
   position: absolute;
   inset: 0;
-  background: url('../images/fmc_west_koratty.jpg') center 15% / cover no-repeat;
+  background: url('../images/new_church.jpeg') center 6%/ cover no-repeat;
 }
 
 .hero-photo::after {
@@ -1393,6 +1393,10 @@ footer {
 
   .mob-btn {
     display: flex;
+  }
+
+  .hero-photo {
+    top: 2%;
   }
 
   .hero-content {
