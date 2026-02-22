@@ -407,7 +407,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gold-bright);
+  background: var(--gold);
   color: var(--white);
   font-size: 0.78rem;
   font-weight: 600;
@@ -1321,7 +1321,7 @@ footer {
 .foot-sub {
   font-size: 0.68rem;
   font-weight: 300;
-  color: color-mix(in srgb, var(--cream) 25%, transparent);
+  color: color-mix(in srgb, var(--cream) 45%, transparent);
   letter-spacing: 0.08em;
   margin-top: 2px;
 }
@@ -1335,7 +1335,7 @@ footer {
 .foot-links a {
   font-size: 0.76rem;
   letter-spacing: 0.06em;
-  color: color-mix(in srgb, var(--cream) 32%, transparent);
+  color: color-mix(in srgb, var(--cream) 50%, transparent);
   transition: color 0.2s;
 }
 
@@ -1345,7 +1345,7 @@ footer {
 
 .foot-copy {
   font-size: 0.7rem;
-  color: color-mix(in srgb, var(--cream) 18%, transparent);
+  color: color-mix(in srgb, var(--cream) 45%, transparent);
 }
 
 /* SCROLL REVEAL ANIMATION */
