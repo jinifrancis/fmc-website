@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import AltarBand from '../components/AltarBand.astro';
+import About from '../components/About.astro';
+import News from '../components/News.astro';
+import Timings from '../components/Timings.astro';
+import Hall from '../components/Hall.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Fathima Matha Church — West Koratty">
+  <Navbar />
+
+  <!-- HERO Section-->
+  <section class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-arch arch-1"></div>
+    <div class="hero-arch arch-2"></div>
+    <div class="hero-stars">
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+      <div class="star">✦</div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Syro-Malabar Catholic Parish</div>
+      <h1 class="hero-title">
+        Fathima Matha<br><em>Church</em>
+      </h1>
+      <p class="hero-mal">ഫാത്തിമ മാതാ ദേവാലയം</p>
+      <div class="hero-rule">
+        <span></span>
+        <span class="hero-rule-icon">✦</span>
+        <span></span>
+      </div>
+      <p class="hero-desc">
+        Nestled in the serene village of West Koratty, our parish has been
+				a beacon of faith and community for the faithful of Padinjare Koratty
+				and Mambra since 1960. All are welcome.
+      </p>
+      <div class="hero-actions">
+        <a href="#timings" class="btn-gold">🕯️ Mass Timings</a>
+				<a href="#contact" class="btn-ghost">📍 Find Us</a>
+        <a href="#hall" class="btn-ghost">🏛️ Parish Hall</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ALTAR BAND -->
+  <AltarBand />
+
+  <!-- ABOUT -->
+  <About />
+
+  <!-- ANNOUNCEMENTS / NEWS -->
+  <News />
+
+  <!-- MASS TIMINGS -->
+  <Timings />
+
+  <!-- PARISH HALL SECTION -->
+  <Hall />
+
+  <!-- CONTACT -->
+  <Contact />
+
+  <!-- FOOTER -->
+  <Footer />
+</Layout>
