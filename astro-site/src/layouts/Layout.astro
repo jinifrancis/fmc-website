@@ -1,0 +1,64 @@
+---
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fathima Matha Church, West Koratty - A Syro-Malabar Catholic parish serving the faithful of Padinjare Koratty and Mambra since 1960.">
+    <meta name="author" content="Fathima Matha Church">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Fathima Matha Church, West Koratty, Syro-Malabar, Catholic Church, Thrissur, Kerala, Ernakulam-Angamaly Archdiocese, Mass Timings, Parish Hall, Contact Information, FMC, Our Lady of Fathima, India">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Fathima Matha Church — West Koratty, Kerala">
+    <meta property="og:description" content="Syro-Malabar Catholic Parish under the Ernakulam-Angamaly Archdiocese, serving the faithful ofWest Koratty in Thrissur District of Kerala since 1960">
+    <meta property="og:image" content="https://fmcwestkoratty.in/assets/images/fmc_west_koratty.jpg">
+    <meta property="og:url" content="https://fmcwestkoratty.in">
+    <meta property="og:type" content="website">
+
+    <title>{title}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/fmc_logo.png">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+
+  <body>
+    <slot />
+
+    <!-- JavaScript -->
+    <script is:inline src="/assets/js/main.js"></script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Fathima Matha Church",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "West Koratty",
+        "addressLocality": "Thrissur",
+        "addressRegion": "Kerala",
+        "postalCode": "680308",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-480-208-1689",
+      "email": "fathimamathawkty@gmail.com"
+    }
+    </script>
+  </body>
+</html>
