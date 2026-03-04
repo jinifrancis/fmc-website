@@ -1,18 +1,25 @@
+---
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
 <footer>
   <div class="foot-inner">
     <div class="foot-brand">
-      <img src="assets/images/fmc_logo.png" alt="FMC Logo" class="foot-logo">
+      <img src="/assets/images/fmc_logo.png" alt="FMC Logo" class="foot-logo">
       <div>
         <div class="foot-name">Fathima Matha Church</div>
-        <div class="foot-sub">Syro-Malabar Catholic · Est. 1960</div>
+        <div class="foot-sub">Syro-Malabar Catholic · {t('footer.established')}</div>
       </div>
     </div>
     <ul class="foot-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#timings">Mass Timings</a></li>
-      <li><a href="#hall">Hall</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href={translatePath('/#about')}>{t('nav.about')}</a></li>
+      <li><a href={translatePath('/#timings')}>{t('nav.timings')}</a></li>
+      <li><a href={translatePath('/#hall')}>{t('nav.hall')}</a></li>
+      <li><a href={translatePath('/#contact')}>{t('nav.contact')}</a></li>
     </ul>
-    <div class="foot-copy">© <span id="year"></span> Fathima Matha Church, West Koratty</div>
+    <div class="foot-copy" set:html={t('footer.copyright')}></div>
   </div>
 </footer>

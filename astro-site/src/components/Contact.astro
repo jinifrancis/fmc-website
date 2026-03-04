@@ -1,37 +1,39 @@
+---
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section class="contact-sec" id="contact">
   <div class="inner">
     <div class="sec-hdr rv">
-      <div class="sec-eye">Get in Touch</div>
-      <h2 class="sec-title">Find <em>Us</em></h2>
-      <p class="sec-lead">We'd love to welcome you. Come visit or reach out any time.</p>
+      <div class="sec-eye">{t('contact.eye')}</div>
+      <h2 class="sec-title" set:html={t('contact.title')}></h2>
+      <p class="sec-lead">{t('contact.lead')}</p>
     </div>
     <div class="c-grid">
       <div class="rv d1">
         <div class="c-item">
           <div class="c-icon">📍</div>
           <div>
-            <div class="c-label">Address</div>
-            <div class="c-val">
-              Fathima Matha Church<br>
-              West Koratty, Thrissur District<br>
-              Kerala – 680 308
-            </div>
+            <div class="c-label">{t('contact.address')}</div>
+            <div class="c-val" set:html={t('contact.addressVal')}></div>
           </div>
         </div>
         <div class="c-item">
           <div class="c-icon">📞</div>
           <div>
-            <div class="c-label">Parish Office</div>
+            <div class="c-label">{t('contact.office')}</div>
             <div class="c-val">
               <a href="tel:+914802081689">+91 480 208 1689</a><br>
-              <span style="font-size:0.82rem;color:var(--ink-faint);">Mon – Sat &nbsp;·&nbsp; 9 AM – 5 PM</span>
+              <span style="font-size:0.82rem;color:var(--ink-faint);" set:html={t('contact.officeHours')}></span>
             </div>
           </div>
         </div>
         <div class="c-item">
           <div class="c-icon">✉️</div>
           <div>
-            <div class="c-label">Email</div>
+            <div class="c-label">{t('contact.email')}</div>
             <div class="c-val">
               <div class="c-val"><a href="mailto:fathimamathawkty@gmail.com">fathimamathawkty@gmail.com</a></div>
             </div>
@@ -40,20 +42,17 @@
         <div class="c-item">
           <div class="c-icon">🕐</div>
           <div>
-            <div class="c-label">Office Hours</div>
-            <div class="c-val">
-              Monday – Saturday<br>
-              9:00 AM – 1:00 PM &nbsp;·&nbsp; 2:00 – 5:00 PM
-            </div>
+            <div class="c-label">{t('contact.hours')}</div>
+            <div class="c-val" set:html={t('contact.hoursVal')}></div>
           </div>
         </div>
         <div class="c-item">
           <div class="c-icon">✝️</div>
           <div>
-            <div class="c-label">Parish Sacristan</div>
+            <div class="c-label">{t('contact.sacristan')}</div>
             <div class="c-val">
               <a href="tel:+919594783182">+91 95947 83182</a><br>
-              <span style="font-size:0.82rem;color:var(--ink-faint);">For sacramental services</span>
+              <span style="font-size:0.82rem;color:var(--ink-faint);">{t('contact.sacristanNote')}</span>
             </div>
           </div>
         </div>
@@ -71,7 +70,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="map-cta">
-          📍 Open in Google Maps
+          {t('contact.mapCta')}
         </a>
       </div>
     </div>
