@@ -3,7 +3,7 @@ export const languages = {
   ml: 'മലയാളം',
 };
 
-export const defaultLang = 'en';
+export const defaultLang = 'ml';
 
 export const ui = {
   en: {
