@@ -39,6 +39,7 @@
   /* Typography */
   --font-serif:   'Cormorant Garamond', Georgia, serif;
   --font-sans:    'Jost', 'Segoe UI', Tahoma, sans-serif;
+  --font-ml: 'Noto Sans Malayalam', 'Malayalam Sangam MN', sans-serif;
 
   /* Layout */
   --radius:       6px;
@@ -62,6 +63,12 @@ body {
   font-size: 16px;
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+html[lang="ml"],
+html[lang="ml"] body,
+html[lang="ml"] * {
+  font-family: var(--font-ml);
 }
 
 a {
@@ -107,7 +114,7 @@ img {
 }
 
 .brand-name {
-  font-family: var(--font-serif);
+  font-family: var(--font-serif) !important;
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--cream);
@@ -115,6 +122,7 @@ img {
 }
 
 .brand-sub {
+  font-family: var(--font-sans) !important;
   font-size: 0.68rem;
   font-weight: 400;
   color: color-mix(in srgb, var(--gold-pale) 70%, transparent);
@@ -234,7 +242,7 @@ img {
   }
 }
 
-/* Optional: Hide float on desktop, show only navbar switcher */
+/* Hide float on desktop, show only navbar switcher */
 @media (min-width: 941px) {
   .lang-float {
     display: none;
@@ -398,7 +406,7 @@ img {
   position: relative;
   z-index: 2;
   padding: 110px 64px 80px;
-  max-width: 640px;
+  max-width: 690px;
   animation: fadeUp 1.1s ease both;
 }
 
@@ -440,6 +448,10 @@ img {
   text-shadow: 0 2px 24px color-mix(in srgb, var(--ink) 40%, transparent);
 }
 
+html[lang="ml"] .hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.3rem);
+}
+
 .hero-title em {
   font-style: italic;
   color: var(--gold-pale);
@@ -479,7 +491,6 @@ img {
 }
 
 .hero-desc {
-  font-size: 1rem;
   font-weight: 300;
   color: color-mix(in srgb, var(--cream) 78%, transparent);
   line-height: 1.82;
@@ -496,47 +507,43 @@ img {
   animation: fadeUp 1.1s 0.4s ease both;
 }
 
-.btn-gold {
+.btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gold);
-  color: var(--white);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 14px 26px;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 18px var(--sh-gold);
+  padding: 12px 22px;
   transition: background 0.2s, transform 0.2s;
+  color: var(--white);
+  border-radius: var(--radius);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  font-weight: 600;
+  box-shadow: 0 4px 18px var(--sh-gold);
+
 }
 
 .btn-gold:hover {
   background: var(--gold-pale);
   color: var(--forest);
-  transform: translateY(-2px);
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   background: color-mix(in srgb, var(--cream) 10%, transparent);
-  color: var(--white);
-  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 13px 26px;
-  border-radius: var(--radius);
   border: 1px solid color-mix(in srgb, var(--cream) 28%, transparent);
-  transition: background 0.2s, transform 0.2s;
 }
 
 .btn-ghost:hover {
   background: color-mix(in srgb, var(--cream) 16%, transparent);
-  transform: translateY(-2px);
 }
 
 .hero-scroll {
@@ -647,6 +654,10 @@ img {
   margin-bottom: 20px;
 }
 
+html[lang="ml"] .altar-quote {
+  font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+}
+
 .altar-cite {
   font-size: 0.72rem;
   font-weight: 600;
@@ -707,6 +718,10 @@ section {
   color: var(--forest);
   line-height: 1.2;
   margin-bottom: 12px;
+}
+
+html[lang="ml"] .sec-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
 }
 
 .sec-title em {
@@ -817,15 +832,15 @@ section {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 72px;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
   align-items: start;
 }
 
 .about-left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .church-frame {
@@ -850,7 +865,6 @@ section {
   display: grid;
   grid-template-columns: 100px 1fr;
   gap: 14px;
-  align-items: stretch;
 }
 
 .mary-frame {
@@ -934,6 +948,10 @@ section {
   color: var(--gold);
 }
 
+html[lang="ml"] .about-h {
+  font-size: 1.8rem;
+}
+
 .about-p {
   font-size: 0.95rem;
   color: var(--ink-mid);
@@ -966,7 +984,7 @@ section {
   font-style: italic;
   color: var(--moss);
   white-space: nowrap;
-  margin: 8px 0;
+  margin: 12px 0;
 }
 
 .groups-grid {
@@ -986,7 +1004,7 @@ section {
 
 .grp-abbr {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.28rem;
   font-weight: 500;
   color: var(--forest);
   line-height: 1;
@@ -994,7 +1012,7 @@ section {
 }
 
 .grp-name {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--ink-soft);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -1292,7 +1310,7 @@ section {
 
 .hall-h {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   font-weight: 400;
   color: var(--forest);
   line-height: 1.2;
@@ -1355,7 +1373,7 @@ section {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  min-width: 80px;
+  min-width: 94px;
 }
 
 .hb-val {
