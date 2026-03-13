@@ -159,6 +159,99 @@ img {
   width: 100%;
 }
 
+.lang-switch {
+  background: none;
+  border: 1.5px solid color-mix(in srgb, var(--cream) 40%, transparent);
+  color: color-mix(in srgb, var(--cream) 75%, transparent);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.lang-switch:hover {
+  background: color-mix(in srgb, var(--gold-pale) 20%, transparent);
+  border-color: var(--gold-pale);
+  color: var(--gold-pale);
+}
+
+.lang-switch-mob {
+  border: 1.5px solid color-mix(in srgb, var(--cream) 40%, transparent);
+  color: color-mix(in srgb, var(--cream) 75%, transparent);
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Floating Language Button */
+.lang-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--forest);
+  color: var(--cream);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.lang-float:hover {
+  background: var(--gold);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--gold-bright);
+}
+
+.lang-float:active {
+  transform: scale(0.95);
+}
+
+/* Hide desktop navbar language switcher on mobile */
+@media (max-width: 940px) {
+  .nav-links .lang-switch {
+    display: none;
+  }
+}
+
+/* Optional: Hide float on desktop, show only navbar switcher */
+@media (min-width: 941px) {
+  .lang-float {
+    display: none;
+  }
+}
+
+/* Adjust position on very small screens */
+@media (max-width: 400px) {
+  .lang-float {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 0.9rem;
+  }
+}
+
 .mob-btn {
   display: none;
   background: none;
@@ -353,7 +446,7 @@ img {
   display: block;
 }
 
-.hero-mal {
+.hero-lang {
   font-family: var(--font-serif);
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-style: italic;
@@ -829,7 +922,7 @@ section {
 
 .about-h {
   font-family: var(--font-serif);
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: 400;
   color: var(--forest);
   line-height: 1.2;
@@ -851,7 +944,7 @@ section {
 
 .about-p strong {
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 501;
 }
 
 .heritage-divider {

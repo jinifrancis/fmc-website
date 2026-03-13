@@ -1,40 +1,46 @@
+---
+import { useTranslations } from '../i18n/utils';
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section class="about-sec" id="about">
   <div class="inner">
     <div class="sec-hdr rv">
-      <div class="sec-eye">Our Parish</div>
-      <h2 class="sec-title">Rooted in <em>Faith</em></h2>
-      <p class="sec-lead">A Syro-Malabar Catholic community serving West Koratty since 1960.</p>
+      <div class="sec-eye">{t('about.eye')}</div>
+      <h2 class="sec-title" set:html={t('about.title')}></h2>
+      <p class="sec-lead">{t('about.lead')}</p>
     </div>
     <div class="about-grid">
       <!-- Left: Images -->
       <div class="about-left rv">
         <div class="church-frame">
-          <img src="assets/images/fmc_west_koratty.jpg" alt="Fathima Matha Church, West Koratty">
+          <img src="/assets/images/fmc_west_koratty.jpg" alt="Fathima Matha Church, West Koratty">
         </div>
         <div class="mary-row">
           <div class="mary-frame">
-            <img src="assets/images/fathima_matha.png" alt="Our Lady of Fatima statue">
+            <img src="/assets/images/fathima_matha.png" alt="Our Lady of Fatima statue">
           </div>
           <div class="parish-badges">
             <div class="p-badge">
               <span class="p-badge-icon">🏠</span>
               <div>
-                <span class="p-badge-label">Families</span>
-                <span class="p-badge-val">~431 families</span>
+                <span class="p-badge-label">{t('about.badge.families')}</span>
+                <span class="p-badge-val">{t('about.badge.familiesVal')}</span>
               </div>
             </div>
             <div class="p-badge">
               <span class="p-badge-icon">🙏</span>
               <div>
-                <span class="p-badge-label">Faithful</span>
-                <span class="p-badge-val">Over 1,800</span>
+                <span class="p-badge-label">{t('about.badge.faithful')}</span>
+                <span class="p-badge-val">{t('about.badge.faithfulVal')}</span>
               </div>
             </div>
             <div class="p-badge">
               <span class="p-badge-icon">📅</span>
               <div>
-                <span class="p-badge-label">Established</span>
-                <span class="p-badge-val">Since 1960</span>
+                <span class="p-badge-label">{t('about.badge.established')}</span>
+                <span class="p-badge-val">{t('about.badge.establishedVal')}</span>
               </div>
             </div>
           </div>
@@ -43,63 +49,50 @@
 
       <!-- Right: Content -->
       <div class="about-right rv d2">
-        <div class="rite-pill">✝ Syro-Malabar Catholic</div>
-        <h2 class="about-h">
-          A community of faith<br>in the heart of <em>West Koratty</em>
-        </h2>
-        <p class="about-p">
-          <strong>Fathima Matha Church</strong> — stands as a beacon of faith for our vibrant Syro-Malabar Catholic community.
-          Established in <strong>1960</strong> under the Ernakulam–Angamaly Archeparchy,
-          our parish welcomes over 1,800 faithful from around 431 families in the
-          Padinjare Koratty and Mambra areas.
-        </p>
+        <div class="rite-pill">✝ {t('about.rite')}</div>
+        <h2 class="about-h" set:html={t('about.heading')}></h2>
+        <p class="about-p" set:html={t('about.p1')}></p>
         <div class="heritage-divider">
           <span></span>
-          <span class="heritage-label">Our Spiritual Heritage</span>
+          <span class="heritage-label">{t('about.heritageLabel')}</span>
           <span></span>
         </div>
-        <p class="about-p">
-          Dedicated to <strong>Our Lady of Fatima</strong>, our patroness whose apparitions
-          in Portugal inspire devotion worldwide, the church reflects Koratty's deep Marian
-          tradition. Nearby, the historic St. Mary's Church (Koratty Muthy) from the 14th
-          century enriches our local Christian roots.
-        </p>
-        <p class="about-p">
-          Our church is more than a place of worship — it is a <strong>family hub</strong>.
-          Active groups include catechism classes for children, youth ministry, choir, and
-          charitable outreach. From vibrant feasts to family retreats, we build bonds in
-          faith, service, and joy, always under Fathima Matha's protective gaze.
-        </p>
+        <p class="about-p" set:html={t('about.p2')}></p>
+        <p class="about-p" set:html={t('about.p3')}></p>
 
         <!-- Parish Groups -->
         <div class="groups-grid">
           <div class="grp">
-            <span class="grp-abbr">CLC</span>
-            <span class="grp-name">Christian Life Community</span>
+            <span class="grp-abbr">{t('groups.clc')}</span>
+            <span class="grp-name">{t('groups.clc.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">KCYM</span>
-            <span class="grp-name">Kerala Catholic Youth Movement</span>
+            <span class="grp-abbr">{t('groups.kcym')}</span>
+            <span class="grp-name">{t('groups.kcym.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">WOMEN WELFARE</span>
-            <span class="grp-name">Women's Welfare Association</span>
+            <span class="grp-abbr">{t('groups.women')}</span>
+            <span class="grp-name">{t('groups.women.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">VINCENT DE PAUL</span>
-            <span class="grp-name">St. Vincent de Paul Society</span>
+            <span class="grp-abbr">{t('groups.svp')}</span>
+            <span class="grp-name">{t('groups.svp.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">SINGING SERAPHS</span>
-            <span class="grp-name">Parish Music Ministry</span>
+            <span class="grp-abbr">{t('groups.choir')}</span>
+            <span class="grp-name">{t('groups.choir.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">CATECHISM</span>
-            <span class="grp-name">Catechism & Faith Formation</span>
+            <span class="grp-abbr">{t('groups.cce')}</span>
+            <span class="grp-name">{t('groups.cce.description')}</span>
           </div>
           <div class="grp">
-            <span class="grp-abbr">ALTAR SERVERS</span>
-            <span class="grp-name">Altar Servers Ministry</span>
+            <span class="grp-abbr">{t('groups.altar')}</span>
+            <span class="grp-name">{t('groups.altar.description')}</span>
+          </div>
+          <div class="grp">
+            <span class="grp-abbr">{t('groups.graceRipples')}</span>
+            <span class="grp-name">{t('groups.graceRipples.description')}</span>
           </div>
         </div>
       </div>
