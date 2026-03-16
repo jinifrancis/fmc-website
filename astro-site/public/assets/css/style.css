@@ -1457,6 +1457,8 @@ footer {
 .foot-copy {
   font-size: 0.7rem;
   color: color-mix(in srgb, var(--cream) 45%, transparent);
+  text-align: center;
+  margin-top: 16px;
 }
 
 .foot-social {
@@ -1600,5 +1602,9 @@ footer {
 
   .hb-label {
     min-width: auto;
+  }
+
+  .foot-social {
+    margin: 0;
   }
 }
