@@ -1,5 +1,16 @@
+---
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Determine opposite language for switcher
+const otherLang = lang === 'en' ? 'ml' : 'en';
+---
+
 <nav class="navbar" id="nav">
-  <a href="/" class="navbar-brand">
+  <a href={translatePath('/')} class="navbar-brand">
     <img src="/assets/images/fmc_logo.jpeg" alt="FMC Logo" class="brand-logo">
     <div>
       <div class="brand-name">Fathima Matha Church</div>
@@ -7,10 +18,15 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#timings">Mass Timings</a></li>
-    <li><a href="#hall">Hall</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href={translatePath('/#about')}>{t('nav.about')}</a></li>
+    <li><a href={translatePath('/#timings')}>{t('nav.timings')}</a></li>
+    <li><a href={translatePath('/#hall')}>{t('nav.hall')}</a></li>
+    <li><a href={translatePath('/#contact')}>{t('nav.contact')}</a></li>
+    <li>
+      <a href={translatePath('/', otherLang)} class="lang-switch" id="langSwitch">
+        {lang === 'en' ? 'മ' : 'EN'}
+      </a>
+    </li>
   </ul>
   <button class="mob-btn" id="mobBtn" aria-label="Menu">
     <span></span>
@@ -21,8 +37,44 @@
 
 <!-- Mobile Menu -->
 <div class="mob-menu" id="mobMenu">
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#timings" onclick="closeMob()">Mass Timings</a>
-  <a href="#hall" onclick="closeMob()">Hall</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href={translatePath('/#about')} onclick="closeMob()">{t('nav.about')}</a>
+  <a href={translatePath('/#timings')} onclick="closeMob()">{t('nav.timings')}</a>
+  <a href={translatePath('/#hall')} onclick="closeMob()">{t('nav.hall')}</a>
+  <a href={translatePath('/#contact')} onclick="closeMob()">{t('nav.contact')}</a>
+  <a href={translatePath('/', otherLang)} class="lang-switch-mob" id="langSwitchMob">
+    {lang === 'en' ? 'മലയാളം' : 'English'}
+  </a>
 </div>
+
+<!-- Floating Language Switcher -->
+<a
+  href={translatePath('/', otherLang)}
+  class="lang-float"
+  id="langFloat"
+  aria-label={lang === 'en' ? 'Switch to Malayalam' : 'Switch to English'}
+  title={lang === 'en' ? 'മലയാളം' : 'English'}
+>
+  {lang === 'en' ? 'മ' : 'EN'}
+</a>
+
+<script>
+  const langSwitch = document.getElementById('langSwitch');
+  const langSwitchMob = document.getElementById('langSwitchMob');
+  const langFloat = document.getElementById('langFloat');
+
+  function preserveHash(link: HTMLAnchorElement | null) {
+    if (!link) return;
+
+    link.addEventListener('click', (e) => {
+      const hash = window.location.hash;
+      if (hash) {
+        e.preventDefault();
+        window.location.href = link.href + hash;
+      }
+    });
+  }
+
+  preserveHash(langSwitch);
+  preserveHash(langSwitchMob);
+  preserveHash(langFloat);
+</script>

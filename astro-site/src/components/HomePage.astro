@@ -1,0 +1,67 @@
+---
+import AltarBand from './AltarBand.astro';
+import About from './About.astro';
+import News from './News.astro';
+import Timings from './Timings.astro';
+import Hall from './Hall.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-arch arch-1"></div>
+  <div class="hero-arch arch-2"></div>
+  <div class="hero-stars">
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">{t('hero.eyebrow')}</div>
+    <h1 class="hero-title" set:html={t('hero.title')}></h1>
+    <p class="hero-lang">{t('hero.otherLang')}</p>
+    <div class="hero-rule">
+      <span></span>
+      <span class="hero-rule-icon">✦</span>
+      <span></span>
+    </div>
+    <p class="hero-desc">
+      {t('hero.description')}
+    </p>
+    <div class="hero-actions">
+      <a href={translatePath('/#timings')} class="btn btn-gold">🕯️ {t('nav.timings')}</a>
+      <a href={translatePath('/#contact')} class="btn btn-ghost">📍 {t('nav.find_us')}</a>
+      <a href={translatePath('/#hall')} class="btn btn-ghost">🏛️ {t('nav.hall')}</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<AltarBand lang={lang} />
+
+<About lang={lang} />
+
+<News lang={lang} />
+
+<Timings lang={lang} />
+
+<Hall lang={lang} />
+
+<Contact lang={lang} />
+
+<Footer lang={lang} />
