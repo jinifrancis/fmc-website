@@ -1,0 +1,165 @@
+---
+// Admin panel — no i18n, English only, no Layout wrapper
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Fathima Matha Church</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="adm-header">
+  <span class="adm-brand">✝ FMC Admin</span>
+  <div class="adm-header-right">
+    <span class="adm-user" id="adm-user-email"></span>
+    <button class="btn-ghost btn-sm" id="btn-logout" style="display:none;">Logout</button>
+  </div>
+</header>
+
+<!-- Login view -->
+<div id="view-login">
+  <div class="login-card">
+    <div class="login-logo">✝</div>
+    <h1 class="login-title">Admin Login</h1>
+    <p class="login-sub">Fathima Matha Church — West Koratty</p>
+
+    <div class="alert alert-error" id="login-error"></div>
+
+    <form id="login-form">
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="admin@example.com" required autocomplete="email">
+      </div>
+      <div class="form-row">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-primary login-btn" id="login-btn">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard view -->
+<div id="view-dashboard">
+  <div class="dash-inner">
+    <div class="dash-topbar">
+      <div>
+        <h2 class="dash-title">Announcements</h2>
+        <p class="dash-count" id="dash-count"></p>
+      </div>
+      <button class="btn-gold" id="btn-new">+ New Announcement</button>
+    </div>
+
+    <div class="alert alert-error" id="dash-error"></div>
+    <div class="alert alert-success" id="dash-success"></div>
+
+    <div class="ann-list" id="ann-list">
+      <div class="empty-state">
+        <h3>Loading…</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Announcement form modal -->
+<div class="modal-overlay" id="form-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">New Announcement</h3>
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-error" id="form-error"></div>
+
+      <p class="form-section-label">Malayalam Content (Primary)</p>
+      <div class="form-row">
+        <label>Title <span>(Malayalam — required)</span></label>
+        <input type="text" id="f-title-ml" placeholder="ഇടവക അറിയിപ്പ്" required>
+      </div>
+      <div class="form-row">
+        <label>Content <span>(Malayalam — required)</span></label>
+        <textarea id="f-content-ml" placeholder="അറിയിപ്പിന്റെ ഉള്ളടക്കം…" rows="4"></textarea>
+        <p class="form-hint">Separate paragraphs with a blank line (Enter twice).</p>
+      </div>
+
+      <p class="form-section-label">English Content (Optional)</p>
+      <div class="form-row">
+        <label>Title <span>(English — optional)</span></label>
+        <input type="text" id="f-title-en" placeholder="Parish Announcement">
+      </div>
+      <div class="form-row">
+        <label>Content <span>(English — optional)</span></label>
+        <textarea id="f-content-en" placeholder="Announcement content…" rows="4"></textarea>
+      </div>
+
+      <p class="form-section-label">Details</p>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="form-row">
+          <label>Badge Type</label>
+          <select id="f-badge">
+            <option value="important">📢 Important</option>
+            <option value="success">✨ New Facility</option>
+            <option value="new">🆕 New</option>
+            <option value="event">📅 Event</option>
+            <option value="update">🔄 Update</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="form-section-label">Image (Optional)</p>
+      <div class="form-row">
+        <div class="img-upload-area" id="img-drop">
+          <input type="file" id="f-image-file" accept="image/jpeg,image/png,image/webp">
+          <p class="img-upload-label"><strong>Click to upload</strong> or drag & drop<br>JPG, PNG, WebP — max 5 MB</p>
+        </div>
+        <div class="img-preview" id="img-preview">
+          <img id="img-preview-src" src="" alt="Preview">
+          <button class="img-remove" id="img-remove" type="button" title="Remove image">×</button>
+        </div>
+        <p class="img-uploading" id="img-uploading">⏳ Uploading image…</p>
+        <input type="hidden" id="f-image-url">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div>
+        <button class="btn-danger btn-sm" id="btn-delete" style="display:none;">Delete</button>
+      </div>
+      <div class="modal-footer-right">
+        <button class="btn-ghost" id="btn-save-draft">Save as Draft</button>
+        <button class="btn-primary" id="btn-publish">Publish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="confirm-modal">
+    <h3>Delete Announcement?</h3>
+    <p>This action cannot be undone. The announcement will be permanently deleted.</p>
+    <div class="confirm-modal-btns">
+      <button class="btn-ghost" id="confirm-cancel">Cancel</button>
+      <button class="btn-danger" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+import { initAdmin } from '../../lib/admin';
+initAdmin();
+</script>
+
+</body>
+</html>
