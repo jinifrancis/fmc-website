@@ -1,5 +1,6 @@
 ---
 import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import CardSkeleton from './CardSkeleton.astro';
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -13,26 +14,46 @@ const translatePath = useTranslatedPath(lang);
       <p class="sec-lead">{t('news.lead')}</p>
     </div>
 
-    <div class="news-grid">
-      <!-- News Card 1: Farewell -->
-      <article class="news-card rv d1">
-        <div class="news-badge">📢 Important</div>
-        <h3 class="news-title">{t('news.farewell.title')}</h3>
-        <p class="news-date">📅 February 22, 2026</p>
-        <p class="news-excerpt">{t('news.farewell.p1')}</p>
-        <p class="news-excerpt">{t('news.farewell.p2')}</p>
-      </article>
+    <div class="news-grid" id="news-grid" data-lang={lang}>
+      <CardSkeleton />
+    </div>
 
-      <!-- News Card 2: Parish Hall -->
-      <article class="news-card rv d2">
-        <div class="news-badge news-badge-success">{t('news.hall.badge')}</div>
-        <h3 class="news-title">{t('news.hall.title')}</h3>
-        <p class="news-date">{t('news.hall.date')}</p>
-        <p class="news-excerpt">{t('news.hall.p1')}</p>
-        <div class="news-cta">
-          <a href={translatePath('/#hall')} class="news-link">{t('news.hall.link')}</a>
-        </div>
-      </article>
+    <div class="news-view-all rv">
+      <a href={translatePath('/announcements')} class="btn btn-gold">{t('news.view_all')}</a>
     </div>
   </div>
 </section>
+
+<script>
+import { supabase } from '../lib/supabase';
+import { useTranslations } from '../i18n/utils';
+import { makeCard } from '../lib/newsUtils';
+
+const grid = document.getElementById('news-grid');
+if (!grid) throw new Error('news-grid not found');
+
+const lang = grid.dataset.lang || 'ml';
+const t = useTranslations(lang);
+
+async function loadNews() {
+  try {
+    const { data, error } = await supabase
+      .from('announcements')
+      .select('*')
+      .eq('published', true)
+      .order('date', { ascending: false })
+      .limit(3);
+
+    if (error || !data || data.length === 0) {
+      grid.innerHTML = '';
+      return;
+    }
+
+    grid.innerHTML = data.map(item => makeCard(item, lang, t)).join('');
+  } catch {
+    grid.innerHTML = '';
+  }
+}
+
+loadNews();
+</script>
