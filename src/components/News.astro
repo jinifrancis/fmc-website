@@ -17,6 +17,7 @@ const translatePath = useTranslatedPath(lang);
     <div class="news-grid" id="news-grid" data-lang={lang}>
       <CardSkeleton />
     </div>
+    <p class="ann-empty" id="news-empty" style="display:none;">{t('ann.empty')}</p>
 
     <div class="news-view-all rv">
       <a href={translatePath('/announcements')} class="btn btn-gold">{t('news.view_all')}</a>
@@ -25,35 +26,15 @@ const translatePath = useTranslatedPath(lang);
 </section>
 
 <script>
-import { supabase } from '../lib/supabase';
 import { useTranslations } from '../i18n/utils';
-import { makeCard } from '../lib/newsUtils';
+import { fetchAndRenderAnnouncements } from '../lib/newsUtils';
 
 const grid = document.getElementById('news-grid');
+const emptyMsg = document.getElementById('news-empty');
 if (!grid) throw new Error('news-grid not found');
 
 const lang = grid.dataset.lang || 'ml';
 const t = useTranslations(lang);
 
-async function loadNews() {
-  try {
-    const { data, error } = await supabase
-      .from('announcements')
-      .select('*')
-      .eq('published', true)
-      .order('date', { ascending: false })
-      .limit(3);
-
-    if (error || !data || data.length === 0) {
-      grid.innerHTML = '';
-      return;
-    }
-
-    grid.innerHTML = data.map(item => makeCard(item, lang, t)).join('');
-  } catch {
-    grid.innerHTML = '';
-  }
-}
-
-loadNews();
+fetchAndRenderAnnouncements(grid, lang, t, { limit: 3, emptyEl: emptyMsg });
 </script>

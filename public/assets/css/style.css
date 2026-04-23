@@ -1699,12 +1699,6 @@ footer {
   min-height: 300px;
 }
 
-.ann-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-}
-
 .ann-empty {
   text-align: center;
   color: var(--ink-faint);
@@ -1715,5 +1709,4 @@ footer {
 @media (max-width: 600px) {
   .ann-hero { padding: 48px 20px 40px; }
   .ann-sec  { padding: 40px 18px; }
-  .ann-grid { grid-template-columns: 1fr; }
 }

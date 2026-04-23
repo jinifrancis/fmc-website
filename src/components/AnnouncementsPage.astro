@@ -21,7 +21,7 @@ const t = useTranslations(lang);
 
   <section class="ann-sec">
     <div class="inner">
-      <div class="ann-grid" id="ann-grid" data-lang={lang}>
+      <div class="news-grid" id="ann-grid" data-lang={lang}>
         <CardSkeleton />
       </div>
       <p class="ann-empty" id="ann-empty" style="display:none;">{t('ann.empty')}</p>
@@ -30,9 +30,8 @@ const t = useTranslations(lang);
 </main>
 
 <script>
-import { supabase } from '../lib/supabase';
 import { useTranslations } from '../i18n/utils';
-import { makeCard } from '../lib/newsUtils';
+import { fetchAndRenderAnnouncements } from '../lib/newsUtils';
 
 const grid = document.getElementById('ann-grid');
 const emptyMsg = document.getElementById('ann-empty');
@@ -41,26 +40,5 @@ if (!grid) throw new Error();
 const lang = grid.dataset.lang || 'ml';
 const t = useTranslations(lang);
 
-async function load() {
-  try {
-    const { data, error } = await supabase
-      .from('announcements')
-      .select('*')
-      .eq('published', true)
-      .order('date', { ascending: false });
-
-    if (error || !data || data.length === 0) {
-      grid.innerHTML = '';
-      if (emptyMsg) emptyMsg.style.display = 'block';
-      return;
-    }
-
-    grid.innerHTML = data.map(item => makeCard(item, lang, t)).join('');
-  } catch {
-    grid.innerHTML = '';
-    if (emptyMsg) emptyMsg.style.display = 'block';
-  }
-}
-
-load();
+fetchAndRenderAnnouncements(grid, lang, t, { emptyEl: emptyMsg });
 </script>
