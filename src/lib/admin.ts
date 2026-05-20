@@ -127,7 +127,7 @@ async function loadAnnouncements() {
     btn.addEventListener('click', () => {
       const id = btn instanceof HTMLElement ? btn.dataset.edit : null;
       if (!id) return;
-      const item = items.find((d) => d.id === id);
+      const item = items.find((d) => String(d.id) === id);
       if (item) openEditModal(item);
     });
   });

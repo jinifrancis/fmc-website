@@ -1,5 +1,5 @@
 export interface Announcement {
-  id: string;
+  id: number;
   title_ml: string;
   title_en: string | null;
   content_ml: string;
