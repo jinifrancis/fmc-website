@@ -76,6 +76,16 @@ export async function fetchAndRenderAnnouncements(
   }
 }
 
+export function initCardOverflow(grid: HTMLElement): void {
+  grid.querySelectorAll<HTMLElement>('.news-card').forEach(card => {
+    const check = () => {
+      card.classList.toggle('has-overflow', card.scrollHeight > card.clientHeight && card.scrollTop + card.clientHeight < card.scrollHeight - 4);
+    };
+    check();
+    card.addEventListener('scroll', check);
+  });
+}
+
 export function makeCard(item: Announcement, lang: string, t: (key: string) => string): string {
   const title = escapeHtml(String(lang === 'ml' ? item.title_ml : (item.title_en || item.title_ml)));
   const content = String(lang === 'ml' ? item.content_ml : (item.content_en || item.content_ml));

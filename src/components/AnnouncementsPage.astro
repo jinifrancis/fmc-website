@@ -31,7 +31,7 @@ const t = useTranslations(lang);
 
 <script>
 import { useTranslations } from '../i18n/utils';
-import { fetchAndRenderAnnouncements } from '../lib/newsUtils';
+import { fetchAndRenderAnnouncements, initCardOverflow } from '../lib/newsUtils';
 
 const grid = document.getElementById('ann-grid');
 const emptyMsg = document.getElementById('ann-empty');
@@ -40,5 +40,5 @@ if (!grid) throw new Error();
 const lang = grid.dataset.lang || 'ml';
 const t = useTranslations(lang);
 
-fetchAndRenderAnnouncements(grid, lang, t, { emptyEl: emptyMsg });
+fetchAndRenderAnnouncements(grid, lang, t, { emptyEl: emptyMsg }).then(() => initCardOverflow(grid));
 </script>

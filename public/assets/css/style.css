@@ -750,12 +750,37 @@ html[lang="ml"] .sec-title {
 }
 
 .news-card {
+  position: relative;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 28px;
   border-left: 4px solid var(--forest-light);
   transition: transform 0.25s, box-shadow 0.25s;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.news-card::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--white));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.news-card.has-overflow {
+  padding-bottom: 0;
+}
+
+.news-card.has-overflow::after {
+  opacity: 1;
 }
 
 .news-card:hover {
