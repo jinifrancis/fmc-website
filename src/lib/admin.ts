@@ -1,9 +1,49 @@
 import { supabase } from './supabase.js';
 import { escapeHtml, type Announcement } from './newsUtils';
 
+// Session timeout — auto-logout after 30 mins of inactivity
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+const ACTIVITY_THROTTLE_MS = 60_000; // only reset timer once per minute
+let sessionTimer: ReturnType<typeof setTimeout> | null = null;
+let activityHandler: (() => void) | null = null;
+
+function startSessionTimer(onExpire: () => void) {
+  clearSessionTimer();
+
+  sessionTimer = setTimeout(onExpire, SESSION_TIMEOUT_MS);
+
+  // Reset timer on user activity (throttled)
+  let lastReset = Date.now();
+  activityHandler = () => {
+    if (Date.now() - lastReset < ACTIVITY_THROTTLE_MS) return;
+    lastReset = Date.now();
+    if (sessionTimer) {
+      clearTimeout(sessionTimer);
+      sessionTimer = setTimeout(onExpire, SESSION_TIMEOUT_MS);
+    }
+  };
+
+  document.addEventListener('click', activityHandler);
+  document.addEventListener('keydown', activityHandler);
+  document.addEventListener('scroll', activityHandler);
+}
+
+function clearSessionTimer() {
+  if (sessionTimer) {
+    clearTimeout(sessionTimer);
+    sessionTimer = null;
+  }
+  if (activityHandler) {
+    document.removeEventListener('click', activityHandler);
+    document.removeEventListener('keydown', activityHandler);
+    document.removeEventListener('scroll', activityHandler);
+    activityHandler = null;
+  }
+}
+
 // State
-let editingId: string | null = null;
-let deleteTargetId: string | null = null;
+let editingId: number | null = null;
+let deleteTargetId: number | null = null;
 let currentImageUrl: string | null = null;
 // The image_url the modal was opened with. Used to detect orphan uploads when the user replaces/removes/cancels.
 let originalImageUrl: string | null = null;
@@ -322,14 +362,29 @@ export function initAdmin() {
   const btnPublish = getEl<HTMLButtonElement>('btn-publish');
 
   // Authentication
+  async function expireSession() {
+    await supabase.auth.signOut();
+    clearSessionTimer();
+    admUserEmail.textContent = '';
+    btnLogout.style.display = 'none';
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign In';
+    loginEmail.value = '';
+    loginPassword.value = '';
+    showView('login');
+    showAlert(loginError, 'Session expired. Please sign in again.');
+  }
+
   async function checkSession() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
       admUserEmail.textContent = session.user.email ?? '';
       btnLogout.style.display = 'inline-block';
+      startSessionTimer(expireSession);
       showView('dashboard');
       await loadAnnouncements();
     } else {
+      clearSessionTimer();
       showView('login');
     }
   }
@@ -357,14 +412,20 @@ export function initAdmin() {
       admUserEmail.textContent = session.user.email ?? '';
       btnLogout.style.display = 'inline-block';
     }
+    startSessionTimer(expireSession);
     showView('dashboard');
     await loadAnnouncements();
   });
 
   btnLogout.addEventListener('click', async () => {
     await supabase.auth.signOut();
+    clearSessionTimer();
     admUserEmail.textContent = '';
     btnLogout.style.display = 'none';
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign In';
+    loginEmail.value = '';
+    loginPassword.value = '';
     showView('login');
   });
 
