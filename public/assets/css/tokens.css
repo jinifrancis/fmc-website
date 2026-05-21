@@ -1,0 +1,27 @@
+/* ══════════════════════════════════════════════════════════
+   SHARED DESIGN TOKENS
+   Single source of truth for colors used across site & admin
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colors - Forest & Earth Tones */
+  --forest:       #1b3d2a;
+  --forest-mid:   #224d35;
+  --forest-light: #2e6644;
+
+  /* Colors - Neutrals */
+  --cream:        #faf6ed;
+  --parchment:    #f2e9d4;
+  --border:       #ddd0b4;
+  --white:        #ffffff;
+
+  /* Colors - Accents */
+  --gold:         #b8840a;
+  --gold-bright:  #d4980f;
+
+  /* Colors - Text */
+  --ink:          #16120a;
+  --ink-mid:      #382c18;
+  --ink-soft:     #6a5838;
+  --ink-faint:    #a08c68;
+}

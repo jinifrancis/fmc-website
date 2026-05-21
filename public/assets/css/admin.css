@@ -1,17 +1,8 @@
+/* SHARED DESIGN TOKENS */
+@import './tokens.css';
+
+/* ADDITIONAL VARIABLES (admin-specific) */
 :root {
-  --forest:       #1b3d2a;
-  --forest-mid:   #224d35;
-  --forest-light: #2e6644;
-  --gold:         #b8840a;
-  --gold-bright:  #d4980f;
-  --cream:        #faf6ed;
-  --parchment:    #f2e9d4;
-  --border:       #ddd0b4;
-  --white:        #ffffff;
-  --ink:          #16120a;
-  --ink-mid:      #382c18;
-  --ink-soft:     #6a5838;
-  --ink-faint:    #a08c68;
   --red:          #c0392b;
   --red-bg:       #fdf2f0;
   --green:        #2e6644;

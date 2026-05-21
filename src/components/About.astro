@@ -1,16 +1,14 @@
 ---
 import { useTranslations } from '../i18n/utils';
+import SectionHeader from './SectionHeader.astro';
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const groups = ['clc', 'kcym', 'women', 'svp', 'choir', 'cce', 'altar', 'graceRipples'];
 ---
 
 <section class="about-sec" id="about">
   <div class="inner">
-    <div class="sec-hdr rv">
-      <div class="sec-eye">{t('about.eye')}</div>
-      <h2 class="sec-title" set:html={t('about.title')}></h2>
-      <p class="sec-lead">{t('about.lead')}</p>
-    </div>
+    <SectionHeader eye={t('about.eye')} title={t('about.title')} lead={t('about.lead')} />
     <div class="about-grid">
       <!-- Left: Images -->
       <div class="about-left rv">
@@ -62,38 +60,12 @@ const t = useTranslations(lang);
 
         <!-- Parish Groups -->
         <div class="groups-grid">
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.clc')}</span>
-            <span class="grp-name">{t('groups.clc.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.kcym')}</span>
-            <span class="grp-name">{t('groups.kcym.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.women')}</span>
-            <span class="grp-name">{t('groups.women.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.svp')}</span>
-            <span class="grp-name">{t('groups.svp.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.choir')}</span>
-            <span class="grp-name">{t('groups.choir.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.cce')}</span>
-            <span class="grp-name">{t('groups.cce.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.altar')}</span>
-            <span class="grp-name">{t('groups.altar.description')}</span>
-          </div>
-          <div class="grp">
-            <span class="grp-abbr">{t('groups.graceRipples')}</span>
-            <span class="grp-name">{t('groups.graceRipples.description')}</span>
-          </div>
+          {groups.map(g => (
+            <div class="grp">
+              <span class="grp-abbr">{t(`groups.${g}`)}</span>
+              <span class="grp-name">{t(`groups.${g}.description`)}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

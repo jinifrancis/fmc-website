@@ -1,16 +1,13 @@
 ---
-import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeader from './SectionHeader.astro';
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
 <section class="contact-sec" id="contact">
   <div class="inner">
-    <div class="sec-hdr rv">
-      <div class="sec-eye">{t('contact.eye')}</div>
-      <h2 class="sec-title" set:html={t('contact.title')}></h2>
-      <p class="sec-lead">{t('contact.lead')}</p>
-    </div>
+    <SectionHeader eye={t('contact.eye')} title={t('contact.title')} lead={t('contact.lead')} />
     <div class="c-grid">
       <div class="rv d1">
         <div class="c-item">

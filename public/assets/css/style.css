@@ -3,36 +3,20 @@
    Main Stylesheet
    ══════════════════════════════════════════════════════════ */
 
-/* CSS VARIABLES (DESIGN TOKENS) */
+/* SHARED DESIGN TOKENS */
+@import './tokens.css';
+
+/* ADDITIONAL VARIABLES (site-specific) */
 :root {
-  /* Colors - Forest & Earth Tones */
-  --forest:       #1b3d2a;
-  --forest-mid:   #224d35;
-  --forest-light: #2e6644;
+  /* Extended Colors */
   --moss:         #4a7a5a;
   --sage:         #7aaa8a;
   --sage-pale:    #c8ddd0;
-
-  /* Colors - Neutrals */
-  --cream:        #faf6ed;
-  --parchment:    #f2e9d4;
   --parchment2:   #e8dcc0;
-  --border:       #ddd0b4;
-  --white:        #ffffff;
-
-  /* Colors - Accents */
-  --gold:         #b8840a;
-  --gold-bright:  #d4980f;
   --gold-pale:    #e8cc70;
   --gold-faint:   #faf0cc;
 
-  /* Colors - Text */
-  --ink:          #16120a;
-  --ink-mid:      #382c18;
-  --ink-soft:     #6a5838;
-  --ink-faint:    #a08c68;
-
-  /* Shadows - these use rgba for better browser compatibility */
+  /* Shadows */
   --sh-warm:      rgba(22,18,10,0.14);
   --sh-gold:      rgba(184,132,10,0.18);
 

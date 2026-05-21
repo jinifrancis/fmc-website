@@ -1,16 +1,13 @@
 ---
-import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeader from './SectionHeader.astro';
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
 <section class="timings-sec" id="timings">
   <div class="inner">
-    <div class="sec-hdr rv">
-      <div class="sec-eye">{t('timings.eye')}</div>
-      <h2 class="sec-title" set:html={t('timings.title')}></h2>
-      <p class="sec-lead">{t('timings.lead')}</p>
-    </div>
+    <SectionHeader eye={t('timings.eye')} title={t('timings.title')} lead={t('timings.lead')} />
     <div class="t-grid">
       <!-- Sunday -->
       <div class="t-card rv d1">
