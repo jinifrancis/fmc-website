@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import AnnouncementsPage from '../../components/AnnouncementsPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title={t('ann.pageTitle')} lang={lang}>
+  <Navbar lang={lang} />
+  <AnnouncementsPage lang={lang} />
+  <Footer lang={lang} />
+</Layout>

@@ -7,6 +7,7 @@ const translatePath = useTranslatedPath(lang);
 
 // Determine opposite language for switcher
 const otherLang = lang === 'en' ? 'ml' : 'en';
+const currentPath = Astro.url.pathname.replace(/^\/(ml|en)/, '') || '/';
 ---
 
 <nav class="navbar" id="nav">
@@ -20,10 +21,11 @@ const otherLang = lang === 'en' ? 'ml' : 'en';
   <ul class="nav-links">
     <li><a href={translatePath('/#about')}>{t('nav.about')}</a></li>
     <li><a href={translatePath('/#timings')}>{t('nav.timings')}</a></li>
+    <li><a href={translatePath('/#announcements')}>{t('nav.announcements')}</a></li>
     <li><a href={translatePath('/#hall')}>{t('nav.hall')}</a></li>
     <li><a href={translatePath('/#contact')}>{t('nav.contact')}</a></li>
     <li>
-      <a href={translatePath('/', otherLang)} class="lang-switch" id="langSwitch">
+      <a href={translatePath(currentPath, otherLang)} class="lang-switch" id="langSwitch">
         {lang === 'en' ? 'മ' : 'EN'}
       </a>
     </li>
@@ -39,6 +41,7 @@ const otherLang = lang === 'en' ? 'ml' : 'en';
 <div class="mob-menu" id="mobMenu">
   <a href={translatePath('/#about')} onclick="closeMob()">{t('nav.about')}</a>
   <a href={translatePath('/#timings')} onclick="closeMob()">{t('nav.timings')}</a>
+  <a href={translatePath('/#announcements')} onclick="closeMob()">{t('nav.announcements')}</a>
   <a href={translatePath('/#hall')} onclick="closeMob()">{t('nav.hall')}</a>
   <a href={translatePath('/#contact')} onclick="closeMob()">{t('nav.contact')}</a>
   <a href={translatePath('/', otherLang)} class="lang-switch-mob" id="langSwitchMob">
