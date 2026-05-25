@@ -3,6 +3,7 @@ const DEFAULT_SKELETON_COUNT = 3;
 interface Props { count?: number; }
 const { count = DEFAULT_SKELETON_COUNT } = Astro.props;
 ---
+
 {Array.from({ length: count }).map(() => (
   <div class="news-card news-skeleton">
     <div class="skel skel-badge"></div>

@@ -23,15 +23,6 @@ const translatePath = useTranslatedPath(lang);
 </section>
 
 <script>
-import { useTranslations } from '../i18n/utils';
-import { fetchAndRenderAnnouncements, initCardOverflow } from '../lib/newsUtils';
-
-const grid = document.getElementById('news-grid');
-const emptyMsg = document.getElementById('news-empty');
-if (!grid) throw new Error('news-grid not found');
-
-const lang = grid.dataset.lang || 'ml';
-const t = useTranslations(lang);
-
-fetchAndRenderAnnouncements(grid, lang, t, { limit: 3, emptyEl: emptyMsg }).then(() => initCardOverflow(grid));
+  import { initAnnouncementGrid } from '../lib/initAnnouncementGrid';
+  initAnnouncementGrid('news-grid', 'news-empty', 3);
 </script>

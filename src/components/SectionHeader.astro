@@ -2,6 +2,7 @@
 interface Props { eye: string; title: string; lead: string; }
 const { eye, title, lead } = Astro.props;
 ---
+
 <div class="sec-hdr rv">
   <div class="sec-eye">{eye}</div>
   <h2 class="sec-title" set:html={title}></h2>

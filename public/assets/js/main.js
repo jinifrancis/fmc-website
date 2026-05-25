@@ -1,9 +1,3 @@
-/**
- * FATHIMA MATHA CHURCH — WEST KORATTY
- * Main JavaScript
- */
-
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   // MOBILE MENU
   const menuBtn = document.getElementById('mobBtn');
@@ -15,12 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Close mobile menu when link is clicked
-  window.closeMob = function() {
-    if (mobileMenu) {
-      mobileMenu.classList.remove('open');
-    }
-  };
+  // Close mobile menu when any link inside it is clicked
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+      });
+    });
+  }
 
   // SCROLL REVEAL ANIMATION
   const revealElements = document.querySelectorAll('.rv');

@@ -13,10 +13,10 @@ const t = useTranslations(lang);
       <!-- Left: Hall Image Placeholder -->
       <div class="hall-visual rv d1">
         <div class="hall-img-frame">
-          <img src="/assets/images/parish_hall_morning.jpeg" alt="Fathima Matha Parish Hall">
+          <img src="/assets/images/parish_hall_morning.jpeg" alt="Fathima Matha Parish Hall" loading="lazy">
         </div>
         <div class="hall-img-frame">
-          <img src="/assets/images/parish_hall_night.jpeg" alt="Fathima Matha Parish Hall">
+          <img src="/assets/images/parish_hall_night.jpeg" alt="Fathima Matha Parish Hall" loading="lazy">
         </div>
         <div class="hall-features">
           <div class="hall-feature">
@@ -30,7 +30,6 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      <!-- Right: Hall Details -->
       <div class="hall-content rv d2">
         <h3 class="hall-h">{t('hall.name')}</h3>
         <p class="hall-p" set:html={t('hall.description')}></p>

@@ -1,0 +1,108 @@
+<div id="view-dashboard">
+  <div class="dash-inner">
+    <div class="dash-topbar">
+      <div>
+        <h2 class="dash-title">Announcements</h2>
+        <p class="dash-count" id="dash-count"></p>
+      </div>
+      <button class="btn-gold" id="btn-new">+ New Announcement</button>
+    </div>
+
+    <div class="alert alert-error" id="dash-error"></div>
+    <div class="alert alert-success" id="dash-success"></div>
+
+    <div class="ann-list" id="ann-list">
+      <div class="empty-state">
+        <h3>Loading…</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Announcement form modal -->
+<div class="modal-overlay" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">New Announcement</h3>
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-error" id="form-error"></div>
+
+      <p class="form-section-label">Malayalam Content (Primary)</p>
+      <div class="form-row">
+        <label>Title <span>(Malayalam — required)</span></label>
+        <input type="text" id="f-title-ml" placeholder="ഇടവക അറിയിപ്പ്" required>
+      </div>
+      <div class="form-row">
+        <label>Content <span>(Malayalam — required)</span></label>
+        <textarea id="f-content-ml" placeholder="അറിയിപ്പിന്റെ ഉള്ളടക്കം…" rows="4"></textarea>
+        <p class="form-hint">Separate paragraphs with a blank line (Enter twice).</p>
+      </div>
+
+      <p class="form-section-label">English Content (Optional)</p>
+      <div class="form-row">
+        <label>Title <span>(English — optional)</span></label>
+        <input type="text" id="f-title-en" placeholder="Parish Announcement">
+      </div>
+      <div class="form-row">
+        <label>Content <span>(English — optional)</span></label>
+        <textarea id="f-content-en" placeholder="Announcement content…" rows="4"></textarea>
+      </div>
+
+      <p class="form-section-label">Details</p>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="form-row">
+          <label>Badge Type</label>
+          <select id="f-badge">
+            <option value="important">📢 Important</option>
+            <option value="success">✨ New Facility</option>
+            <option value="new">🆕 New</option>
+            <option value="event">📅 Event</option>
+            <option value="update">🔄 Update</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="form-section-label">Image (Optional)</p>
+      <div class="form-row">
+        <div class="img-upload-area" id="img-drop">
+          <input type="file" id="f-image-file" accept="image/jpeg,image/png,image/webp">
+          <p class="img-upload-label"><strong>Click to upload</strong> or drag & drop<br>JPG, PNG, WebP — max 5 MB</p>
+        </div>
+        <div class="img-preview" id="img-preview">
+          <img id="img-preview-src" src="" alt="Preview">
+          <button class="img-remove" id="img-remove" type="button" title="Remove image">×</button>
+        </div>
+        <p class="img-uploading" id="img-uploading">⏳ Uploading image…</p>
+        <input type="hidden" id="f-image-url">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div>
+        <button class="btn-danger btn-sm" id="btn-delete" style="display:none;">Delete</button>
+      </div>
+      <div class="modal-footer-right">
+        <button class="btn-ghost" id="btn-save-draft">Save as Draft</button>
+        <button class="btn-primary" id="btn-publish">Publish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true" aria-label="Confirm deletion">
+  <div class="confirm-modal">
+    <h3>Delete Announcement?</h3>
+    <p>This action cannot be undone. The announcement will be permanently deleted.</p>
+    <div class="confirm-modal-btns">
+      <button class="btn-ghost" id="confirm-cancel">Cancel</button>
+      <button class="btn-danger" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>

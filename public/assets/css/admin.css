@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Header ── */
+/* Header */
 .adm-header {
   background: var(--forest);
   color: #fff;
@@ -36,7 +36,7 @@ body {
 .adm-header-right { display: flex; align-items: center; gap: 12px; }
 .adm-user { font-size: 0.8rem; opacity: 0.7; }
 
-/* ── Buttons ── */
+/* Buttons */
 button {
   cursor: pointer;
   font-family: inherit;
@@ -72,7 +72,7 @@ button {
 .btn-sm { padding: 6px 12px; font-size: 0.78rem; }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* ── Login ── */
+/* Login */
 #view-login {
   min-height: calc(100vh - 60px);
   display: flex;
@@ -113,7 +113,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   margin-bottom: 28px;
 }
 
-/* ── Forms ── */
+/* Forms */
 .form-row { margin-bottom: 18px; }
 .form-row label {
   display: block;
@@ -159,8 +159,27 @@ textarea { resize: vertical; min-height: 90px; }
   font-size: 0.9rem;
   margin-top: 8px;
 }
+.form-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--forest-light);
+  margin: 22px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+@media (max-width: 560px) {
+  .form-grid-2 { grid-template-columns: 1fr; }
+  .ann-item { flex-direction: column; }
+}
 
-/* ── Alert ── */
+/* Alert */
 .alert {
   border-radius: var(--radius);
   padding: 12px 16px;
@@ -172,7 +191,7 @@ textarea { resize: vertical; min-height: 90px; }
 .alert { display: none; }
 .alert.show { display: block; }
 
-/* ── Dashboard ── */
+/* Dashboard */
 #view-dashboard { display: none; }
 .dash-inner {
   max-width: 960px;
@@ -198,7 +217,7 @@ textarea { resize: vertical; min-height: 90px; }
   margin-top: 2px;
 }
 
-/* ── Announcement list ── */
+/* Announcement list */
 .ann-list { display: flex; flex-direction: column; gap: 12px; }
 .ann-item {
   background: var(--white);
@@ -241,7 +260,7 @@ textarea { resize: vertical; min-height: 90px; }
 .status-draft { background: var(--parchment); color: var(--ink-soft); }
 .ann-item-actions { display: flex; gap: 8px; flex-shrink: 0; }
 
-/* ── Modal ── */
+/* Modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -292,19 +311,20 @@ textarea { resize: vertical; min-height: 90px; }
   flex-wrap: wrap;
 }
 .modal-footer-right { display: flex; gap: 10px; }
-
-/* ── Form grid ── */
-.form-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 20px;
+.confirm-modal {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 380px;
+  width: 100%;
+  margin-top: 80px;
+  box-shadow: 0 20px 60px rgba(22,18,10,0.25);
 }
-@media (max-width: 560px) {
-  .form-grid-2 { grid-template-columns: 1fr; }
-  .ann-item { flex-direction: column; }
-}
+.confirm-modal h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.confirm-modal p { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 24px; }
+.confirm-modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
 
-/* ── Image upload ── */
+/* Image upload */
 .img-upload-area {
   border: 2px dashed var(--border);
   border-radius: var(--radius);
@@ -361,7 +381,7 @@ textarea { resize: vertical; min-height: 90px; }
   display: none;
 }
 
-/* ── Loading ── */
+/* Loading */
 .spinner {
   display: inline-block;
   width: 18px;
@@ -382,29 +402,3 @@ textarea { resize: vertical; min-height: 90px; }
 }
 .empty-state h3 { font-size: 1rem; font-weight: 500; margin-bottom: 6px; color: var(--ink-soft); }
 .empty-state p { font-size: 0.85rem; }
-
-/* ── Section divider in form ── */
-.form-section-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--forest-light);
-  margin: 22px 0 14px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* ── Confirm delete modal ── */
-.confirm-modal {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 28px;
-  max-width: 380px;
-  width: 100%;
-  margin-top: 80px;
-  box-shadow: 0 20px 60px rgba(22,18,10,0.25);
-}
-.confirm-modal h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.confirm-modal p { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 24px; }
-.confirm-modal-btns { display: flex; gap: 10px; justify-content: flex-end; }

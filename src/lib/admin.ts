@@ -1,4 +1,4 @@
-import { supabase } from './supabase.js';
+import { supabase } from './supabase';
 import { escapeHtml, type Announcement } from './newsUtils';
 
 // Session timeout — auto-logout after 30 mins of inactivity

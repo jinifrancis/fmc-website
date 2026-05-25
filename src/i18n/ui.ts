@@ -1,9 +1,10 @@
 export const languages = {
   en: 'English',
   ml: 'മലയാളം',
-};
+} as const;
 
-export const defaultLang = 'ml';
+export type Lang = keyof typeof languages;
+export const defaultLang: Lang = 'ml';
 
 export const ui = {
   en: {
@@ -230,4 +231,4 @@ export const ui = {
     'footer.established': '1960 മുതൽ',
     'footer.copyright': '© <span id="year"></span> ഫാത്തിമ മാതാ ദേവാലയം, വെസ്റ്റ് കൊരട്ടി',
   },
-};
+} as const;

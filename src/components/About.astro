@@ -13,11 +13,11 @@ const groups = ['clc', 'kcym', 'women', 'svp', 'choir', 'cce', 'altar', 'graceRi
       <!-- Left: Images -->
       <div class="about-left rv">
         <div class="church-frame">
-          <img src="/assets/images/fmc_west_koratty.jpg" alt="Fathima Matha Church, West Koratty">
+          <img src="/assets/images/fmc_west_koratty.jpg" alt="Fathima Matha Church, West Koratty" loading="lazy">
         </div>
         <div class="mary-row">
           <div class="mary-frame">
-            <img src="/assets/images/fathima_matha.png" alt="Our Lady of Fatima statue">
+            <img src="/assets/images/fathima_matha.png" alt="Our Lady of Fatima statue" loading="lazy">
           </div>
           <div class="parish-badges">
             <div class="p-badge">
@@ -45,7 +45,6 @@ const groups = ['clc', 'kcym', 'women', 'svp', 'choir', 'cce', 'altar', 'graceRi
         </div>
       </div>
 
-      <!-- Right: Content -->
       <div class="about-right rv d2">
         <div class="rite-pill">✝ {t('about.rite')}</div>
         <h2 class="about-h" set:html={t('about.heading')}></h2>
@@ -58,7 +57,6 @@ const groups = ['clc', 'kcym', 'women', 'svp', 'choir', 'cce', 'altar', 'graceRi
         <p class="about-p" set:html={t('about.p2')}></p>
         <p class="about-p" set:html={t('about.p3')}></p>
 
-        <!-- Parish Groups -->
         <div class="groups-grid">
           {groups.map(g => (
             <div class="grp">
