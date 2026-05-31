@@ -12,6 +12,10 @@ export interface Announcement {
   date: string | null;
   published: boolean;
   created_at: string;
+  deleted_at: string | null;
+  creator_uid: string | null;
+  updater_uid: string | null;
+  deleter_uid: string | null;
 }
 
 const ESC_MAP: Record<string, string> = {
@@ -57,6 +61,7 @@ export async function fetchAndRenderAnnouncements(
       .from('announcements')
       .select('id, title_ml, title_en, content_ml, content_en, image_url, badge_type, date, link_url, link_text_ml, link_text_en, published, created_at')
       .eq('published', true)
+      .is('deleted_at', null)
       .order('date', { ascending: false });
 
     if (limit) query = query.limit(limit);

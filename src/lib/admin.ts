@@ -118,6 +118,7 @@ async function loadAnnouncements() {
   const { data, error } = await supabase
     .from('announcements')
     .select('id, title_ml, title_en, content_ml, content_en, image_url, badge_type, date, published, created_at, link_url, link_text_ml, link_text_en')
+    .is('deleted_at', null)
     .order('date', { ascending: false });
 
   if (error) {
@@ -292,6 +293,9 @@ async function saveAnnouncement(published: boolean) {
     return;
   }
 
+  const { data: { session } } = await supabase.auth.getSession();
+  const userId = session?.user?.id ?? null;
+
   const payload = {
     title_ml: fTitleMl.value.trim(),
     title_en: fTitleEn.value.trim() || null,
@@ -301,6 +305,7 @@ async function saveAnnouncement(published: boolean) {
     badge_type: fBadge.value,
     date: fDate.value || null,
     published,
+    ...(editingId ? { updater_uid: userId } : { creator_uid: userId }),
   };
 
   btnSaveDraft.disabled = true;
@@ -550,13 +555,14 @@ export function initAdmin() {
     const dashSuccess = getEl<HTMLDivElement>('dash-success');
     const dashError = getEl<HTMLDivElement>('dash-error');
 
-    // Capture the row's image URL before we delete the DB row. After a
-    // successful delete we'll remove the file from storage so it doesn't
-    // become an orphan.
-    const imageToDelete = originalImageUrl;
+    const { data: { session } } = await supabase.auth.getSession();
+    const userId = session?.user?.id ?? null;
 
     confirmDelete.disabled = true;
-    const { error } = await supabase.from('announcements').delete().eq('id', deleteTargetId);
+    const { error } = await supabase
+      .from('announcements')
+      .update({ deleted_at: new Date().toISOString(), deleter_uid: userId })
+      .eq('id', deleteTargetId);
     confirmDelete.disabled = false;
     confirmModal.classList.remove('open');
     deleteTargetId = null;
@@ -566,9 +572,7 @@ export function initAdmin() {
       return;
     }
 
-    // Best-effort storage cleanup, then sync state so closeModal's own
-    // orphan check doesn't try to delete anything again.
-    if (imageToDelete) await deleteStorageImage(imageToDelete);
+    // Reset in-memory state so closeModal doesn't treat the image as orphaned
     currentImageUrl = null;
     originalImageUrl = null;
 
