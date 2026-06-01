@@ -2,6 +2,18 @@
   command = "npm run build"
   publish = "dist"
 
+# ── Maintenance Mode ─────────────────────────────────────
+# Uncomment the 4 lines below to enable maintenance mode.
+# Commit & push — Netlify will redirect ALL traffic to the
+# maintenance page within ~30 seconds.
+# Re-comment and push again to disable.
+#
+# [[redirects]]
+#   from = "/*"
+#   to = "/maintenance.html"
+#   status = 503
+#   force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
