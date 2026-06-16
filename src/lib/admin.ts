@@ -11,6 +11,7 @@ const LAST_ACTIVITY_KEY = 'adm_last_activity';
 const MB = 1024 * 1024;
 const MAX_ANNOUNCEMENT_IMAGE_BYTES = 5 * MB;
 const MAX_GALLERY_PHOTO_BYTES = 10 * MB;
+const MAX_PHOTOS_PER_EVENT = 20;
 const SUCCESS_TOAST_MS = 3000;
 const FOCUSABLE = 'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 
@@ -1085,6 +1086,25 @@ async function handlePhotoUpload(files: FileList) {
   });
 
   if (validFiles.length === 0) return;
+
+  const { count: existingCount, error: countError } = await supabase
+    .from('gallery_photos')
+    .select('*', { count: 'exact', head: true })
+    .eq('event_id', activeEventId);
+
+  if (countError) {
+    showAlert(photoError, 'Could not verify photo count: ' + countError.message);
+    return;
+  }
+
+  const current = existingCount ?? 0;
+  const remaining = MAX_PHOTOS_PER_EVENT - current;
+  if (validFiles.length > remaining) {
+    showAlert(photoError, remaining <= 0
+      ? `This event already has the maximum of ${MAX_PHOTOS_PER_EVENT} photos.`
+      : `This event has ${current}/${MAX_PHOTOS_PER_EVENT} photos — you can add ${remaining} more, but you selected ${validFiles.length}.`);
+    return;
+  }
 
   uploadProgress.style.display = 'block';
   let uploaded = 0;
