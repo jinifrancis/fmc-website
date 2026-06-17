@@ -33,13 +33,15 @@ export function clearStoredActivity() {
   try { localStorage.removeItem(LAST_ACTIVITY_KEY); } catch { /* storage unavailable */ }
 }
 
-// True if the persisted last-activity timestamp is older than the idle timeout.
 export function isIdleExpired(): boolean {
   try {
     const stored = localStorage.getItem(LAST_ACTIVITY_KEY);
-    return stored !== null && Date.now() - Number(stored) >= SESSION_TIMEOUT_MS;
+    if (stored === null) return true;          // no activity timestamp → can't prove freshness
+    const ts = Number(stored);
+    if (!Number.isFinite(ts)) return true;     // corrupt value → treat as expired
+    return Date.now() - ts >= SESSION_TIMEOUT_MS;
   } catch {
-    return false;
+    return false;                              // storage unavailable → don't lock out
   }
 }
 
