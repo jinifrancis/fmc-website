@@ -12,6 +12,7 @@ export const ui = {
     'nav.timings': 'Mass Timings',
     'nav.announcements': 'Announcements',
     'nav.hall': 'Parish Hall',
+    'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
     'nav.find_us': 'Find Us',
 
@@ -116,6 +117,18 @@ export const ui = {
     'contact.sacristanNote': 'For sacramental services',
     'contact.mapCta': '📍 Open in Google Maps',
 
+    'gallery.pageTitle': 'Photo Gallery — Fathima Matha Church',
+    'gallery.eye': 'Parish Memories',
+    'gallery.title': 'Photo <em>Gallery</em>',
+    'gallery.lead': 'Moments from our parish life and celebrations',
+    'gallery.empty': 'No photo albums published yet.',
+    'gallery.eventEmpty': 'No photos in this album yet.',
+    'gallery.photo': 'Photo',
+    'gallery.photoViewer': 'Photo viewer',
+    'gallery.close': 'Close',
+    'gallery.prev': 'Previous photo',
+    'gallery.next': 'Next photo',
+
     'footer.established': 'Est. 1960',
     'footer.copyright': '© <span id="year"></span> Fathima Matha Church, West Koratty',
   },
@@ -124,6 +137,7 @@ export const ui = {
     'nav.timings': 'കുർബാന സമയം',
     'nav.announcements': 'അറിയിപ്പുകൾ',
     'nav.hall': 'പാരിഷ് ഹാൾ',
+    'nav.gallery': 'ഗാലറി',
     'nav.contact': 'ബന്ധപ്പെടുക',
     'nav.find_us': 'ഞങ്ങളെ കണ്ടെത്താം',
 
@@ -227,6 +241,18 @@ export const ui = {
     'contact.sacristan': 'കപ്യാർ',
     'contact.sacristanNote': 'കൗദാശിക സേവനങ്ങൾക്കായി',
     'contact.mapCta': '📍 ഗൂഗിൾ മാപ്പിൽ കാണുക',
+
+    'gallery.pageTitle': 'ഫോട്ടോ ഗാലറി — ഫാത്തിമ മാതാ ദേവാലയം',
+    'gallery.eye': 'ഇടവക ഓർമ്മകൾ',
+    'gallery.title': 'ഫോട്ടോ <em>ഗാലറി</em>',
+    'gallery.lead': 'ഞങ്ങളുടെ ഇടവക ജീവിതത്തിലെ നിമിഷങ്ങൾ',
+    'gallery.empty': 'ഇപ്പോൾ ഒരു ആൽബവും പ്രസിദ്ധീകരിച്ചിട്ടില്ല.',
+    'gallery.eventEmpty': 'ഈ ആൽബത്തിൽ ഫോട്ടോകൾ ഒന്നുമില്ല.',
+    'gallery.photo': 'ഫോട്ടോ',
+    'gallery.photoViewer': 'ഫോട്ടോ വ്യൂവർ',
+    'gallery.close': 'അടയ്ക്കുക',
+    'gallery.prev': 'മുൻ ഫോട്ടോ',
+    'gallery.next': 'അടുത്ത ഫോട്ടോ',
 
     'footer.established': '1960 മുതൽ',
     'footer.copyright': '© <span id="year"></span> ഫാത്തിമ മാതാ ദേവാലയം, വെസ്റ്റ് കൊരട്ടി',

@@ -1,5 +1,4 @@
 ---
-// Admin panel — no i18n, English only, no Layout wrapper
 import Login from '../../components/admin/Login.astro';
 import Dashboard from '../../components/admin/Dashboard.astro';
 ---
@@ -28,7 +27,11 @@ import Dashboard from '../../components/admin/Dashboard.astro';
     <Dashboard />
 
     <script>
+      import { initAnnouncements } from '../../lib/adminAnnouncements';
+      import { initGalleryAdmin } from '../../lib/adminGallery';
       import { initAdmin } from '../../lib/admin';
+      initAnnouncements();
+      initGalleryAdmin();
       initAdmin();
     </script>
   </body>

@@ -1,0 +1,96 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<main class="ann-main">
+  <div class="ann-hero">
+    <div class="inner">
+      <p class="sec-eye">{t('gallery.eye')}</p>
+      <h1 class="ann-hero-title" set:html={t('gallery.title')} />
+      <p class="ann-hero-lead">{t('gallery.lead')}</p>
+    </div>
+  </div>
+
+  <section class="ann-sec">
+    <div class="inner">
+      <div class="gallery-grid" id="gallery-grid" data-lang={lang}>
+        <!-- Skeleton placeholders shown during actual fetch -->
+        <div class="gallery-card gallery-card--skeleton">
+          <div class="gallery-card-img skel"></div>
+          <div class="gallery-card-body">
+            <div class="skel skel-title" style="margin-bottom:8px;"></div>
+            <div class="skel skel-date"></div>
+          </div>
+        </div>
+        <div class="gallery-card gallery-card--skeleton">
+          <div class="gallery-card-img skel"></div>
+          <div class="gallery-card-body">
+            <div class="skel skel-title" style="margin-bottom:8px;"></div>
+            <div class="skel skel-date"></div>
+          </div>
+        </div>
+        <div class="gallery-card gallery-card--skeleton">
+          <div class="gallery-card-img skel"></div>
+          <div class="gallery-card-body">
+            <div class="skel skel-title" style="margin-bottom:8px;"></div>
+            <div class="skel skel-date"></div>
+          </div>
+        </div>
+      </div>
+      <p class="ann-empty" id="gallery-empty" style="display:none;">{t('gallery.empty')}</p>
+    </div>
+  </section>
+</main>
+
+<!-- Event modal — hidden until a card is clicked -->
+<div
+  id="event-modal"
+  class="event-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="event-modal-title"
+  style="display:none;"
+>
+  <div class="event-modal-inner">
+    <button class="event-modal-close" id="event-modal-close" aria-label={t('gallery.close')}>×</button>
+    <div class="event-modal-header">
+      <h2 class="event-modal-title" id="event-modal-title"></h2>
+      <p class="event-modal-date" id="event-modal-date"></p>
+    </div>
+    <div class="gallery-photo-grid" id="event-modal-photos"></div>
+    <p class="ann-empty" id="event-modal-empty" style="display:none;">{t('gallery.eventEmpty')}</p>
+  </div>
+</div>
+
+<!-- Lightbox overlay -->
+<div
+  class="lightbox"
+  id="lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label={t('gallery.photoViewer')}
+  style="display:none;"
+>
+  <button class="lightbox-close" id="lb-close" aria-label={t('gallery.close')}>×</button>
+  <button class="lightbox-prev" id="lb-prev" aria-label={t('gallery.prev')}>&#8249;</button>
+  <button class="lightbox-next" id="lb-next" aria-label={t('gallery.next')}>&#8250;</button>
+
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <div class="lightbox-spinner" id="lb-spinner"></div>
+      <img class="lightbox-img" id="lb-img" src="" alt="">
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initGalleryGrid } from '../lib/initGallery';
+  initGalleryGrid('gallery-grid', 'gallery-empty');
+</script>

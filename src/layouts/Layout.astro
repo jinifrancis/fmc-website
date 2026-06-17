@@ -1,5 +1,5 @@
 ---
-const { title, lang = 'en' } = Astro.props;
+const { title, lang = 'en', noindex = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ const { title, lang = 'en' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Fathima Matha Church, West Koratty - A Syro-Malabar Catholic parish serving the faithful of Padinjare Koratty and Mambra since 1960.">
     <meta name="author" content="Fathima Matha Church">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'}>
     <meta name="keywords" content="Fathima Matha Church, West Koratty, Syro-Malabar, Catholic Church, Thrissur, Kerala, Ernakulam-Angamaly Archdiocese, Mass Timings, Parish Hall, Contact Information, FMC, Our Lady of Fathima, India">
 
     <!-- Open Graph -->

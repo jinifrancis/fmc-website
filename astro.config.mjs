@@ -9,5 +9,10 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false
     }
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@supabase/supabase-js']
+    }
   }
 });

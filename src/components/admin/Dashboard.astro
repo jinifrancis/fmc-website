@@ -1,25 +1,75 @@
 <div id="view-dashboard">
   <div class="dash-inner">
-    <div class="dash-topbar">
-      <div>
-        <h2 class="dash-title">Announcements</h2>
-        <p class="dash-count" id="dash-count"></p>
-      </div>
-      <button class="btn-gold" id="btn-new">+ New Announcement</button>
+    <div class="dash-tabs">
+      <button class="dash-tab tab-active" id="tab-announcements">Announcements</button>
+      <button class="dash-tab" id="tab-gallery">Gallery</button>
     </div>
 
-    <div class="alert alert-error" id="dash-error"></div>
-    <div class="alert alert-success" id="dash-success"></div>
+    <div class="alert alert-error" id="dash-error" role="alert"></div>
+    <div class="alert alert-success" id="dash-success" role="status"></div>
 
-    <div class="ann-list" id="ann-list">
-      <div class="empty-state">
-        <h3>Loading…</h3>
+    <!-- ANNOUNCEMENTS SECTION -->
+    <div id="section-announcements">
+      <div class="dash-topbar">
+        <div>
+          <h2 class="dash-title">Announcements</h2>
+          <p class="dash-count" id="dash-count"></p>
+        </div>
+        <button class="btn-gold" id="btn-new">+ New Announcement</button>
+      </div>
+
+      <div class="ann-list" id="ann-list">
+        <div class="empty-state">
+          <h3>Loading…</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <div id="section-gallery" style="display:none;">
+      <div class="alert alert-error" id="gallery-dash-error" role="alert"></div>
+      <div class="alert alert-success" id="gallery-dash-success" role="status"></div>
+
+      <div id="gallery-event-list-view">
+        <div class="dash-topbar">
+          <div>
+            <h2 class="dash-title">Gallery Events</h2>
+            <p class="dash-count">Click "Photos" on any event to manage its photos.</p>
+          </div>
+          <button class="btn-gold" id="btn-new-gallery-event">+ New Event</button>
+        </div>
+        <div class="ann-list" id="gallery-event-list">
+          <div class="empty-state"><h3>Loading…</h3></div>
+        </div>
+      </div>
+
+      <div id="gallery-photo-view" style="display:none;">
+        <div class="dash-topbar">
+          <div>
+            <h2 class="dash-title" id="gallery-photo-view-title">Photos</h2>
+          </div>
+          <button class="btn-ghost" id="gallery-back-btn">← Back to Events</button>
+        </div>
+
+        <div class="alert alert-error" id="gallery-photo-error" role="alert"></div>
+
+        <div class="img-upload-area gallery-upload-area">
+          <input type="file" id="gallery-photo-file" accept="image/jpeg,image/png,image/webp" multiple>
+          <p class="img-upload-label">
+            <strong>Click to upload photos</strong> or drag & drop<br>
+            JPG, PNG, WebP — max 10 MB each — EXIF stripped automatically
+          </p>
+        </div>
+        <p class="img-uploading" id="gallery-upload-progress" style="display:none;"></p>
+
+        <div class="gallery-admin-photo-grid" id="gallery-photo-list">
+          <div class="empty-state"><h3>Loading…</h3></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Announcement form modal -->
 <div class="modal-overlay" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
     <div class="modal-header">
@@ -27,7 +77,7 @@
       <button class="modal-close" id="modal-close" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <div class="alert alert-error" id="form-error"></div>
+      <div class="alert alert-error" id="form-error" role="alert"></div>
 
       <p class="form-section-label">Malayalam Content (Primary)</p>
       <div class="form-row">
@@ -95,7 +145,7 @@
   </div>
 </div>
 
-<!-- Delete confirm modal -->
+<!-- Announcement delete confirm modal -->
 <div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true" aria-label="Confirm deletion">
   <div class="confirm-modal">
     <h3>Delete Announcement?</h3>
@@ -103,6 +153,83 @@
     <div class="confirm-modal-btns">
       <button class="btn-ghost" id="confirm-cancel">Cancel</button>
       <button class="btn-danger" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery event form modal -->
+<div class="modal-overlay" id="gallery-event-modal" role="dialog" aria-modal="true" aria-labelledby="ge-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="ge-modal-title">New Event</h3>
+      <button class="modal-close" id="ge-modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-error" id="ge-form-error" role="alert"></div>
+
+      <p class="form-section-label">English Content <span>(required)</span></p>
+      <div class="form-row">
+        <label>Title <span>(required)</span></label>
+        <input type="text" id="ge-title-en" placeholder="Feast Celebration 2026" maxlength="60">
+        <p class="form-hint char-count" id="ge-title-en-count"></p>
+        <p class="field-error" id="ge-title-en-error"></p>
+      </div>
+
+      <p class="form-section-label">Malayalam Content</p>
+      <div class="form-row">
+        <label>Title <span>(required)</span></label>
+        <input type="text" id="ge-title-ml" placeholder="തിരുനാൾ ആഘോഷം 2026" maxlength="60">
+        <p class="form-hint char-count" id="ge-title-ml-count"></p>
+        <p class="field-error" id="ge-title-ml-error"></p>
+      </div>
+
+      <p class="form-section-label">Event Details</p>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="ge-date">
+        </div>
+        <div class="form-row">
+          <span class="form-label">Published</span>
+          <label class="toggle-label">
+            <input type="checkbox" id="ge-published"> Visible on public gallery
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div>
+        <button class="btn-danger btn-sm" id="ge-btn-delete" style="display:none;">Delete Event</button>
+      </div>
+      <div class="modal-footer-right">
+        <button class="btn-ghost" id="ge-modal-close-cancel">Cancel</button>
+        <button class="btn-primary" id="ge-btn-save">Save Event</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery photo delete confirm modal -->
+<div class="modal-overlay" id="gallery-confirm-photo-modal" role="dialog" aria-modal="true" aria-label="Confirm photo deletion">
+  <div class="confirm-modal">
+    <h3>Delete Photo?</h3>
+    <p>This will permanently remove the photo from storage. This cannot be undone.</p>
+    <div class="confirm-modal-btns">
+      <button class="btn-ghost" id="gallery-confirm-photo-cancel">Cancel</button>
+      <button class="btn-danger" id="gallery-confirm-photo-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery event delete confirm modal -->
+<div class="modal-overlay" id="gallery-confirm-event-modal" role="dialog" aria-modal="true" aria-label="Confirm event deletion">
+  <div class="confirm-modal">
+    <h3>Delete Event?</h3>
+    <p>The event will be soft-deleted (hidden from the public gallery). Photos remain in storage.</p>
+    <div class="confirm-modal-btns">
+      <button class="btn-ghost" id="gallery-confirm-event-cancel">Cancel</button>
+      <button class="btn-danger" id="gallery-confirm-event-delete">Delete</button>
     </div>
   </div>
 </div>
