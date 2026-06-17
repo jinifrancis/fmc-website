@@ -13,8 +13,7 @@ export function initGalleryGrid(gridId: string, emptyId: string): void {
   // Render the event cards into the grid.
   fetchAndRenderGalleryEvents(grid, lang, emptyMsg);
 
-  // ── Event modal ───────────────────────────────────────────────────────────
-
+  // Event modal
   const eventModal  = document.getElementById('event-modal') as HTMLElement;
   const modalTitle  = document.getElementById('event-modal-title') as HTMLElement;
   const modalDate   = document.getElementById('event-modal-date') as HTMLElement;
@@ -99,7 +98,7 @@ export function initGalleryGrid(gridId: string, emptyId: string): void {
     if (e.target === eventModal) closeEventModal();
   });
 
-  // ── Lightbox ──────────────────────────────────────────────────────────────
+  // Lightbox
 
   const lightbox  = document.getElementById('lightbox') as HTMLElement;
   const lbImg     = document.getElementById('lb-img') as HTMLImageElement;

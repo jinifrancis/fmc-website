@@ -1,6 +1,5 @@
 import { supabase } from './supabase';
 
-// ── Shared configuration constants ───────────────────────────────────────────
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000;   // auto-logout after 30 min idle
 const SESSION_CHECK_MS = 60_000;             // re-check idle time every 60s
 const ACTIVITY_PERSIST_THROTTLE_MS = 5000;   // min gap between localStorage writes
@@ -9,7 +8,6 @@ export const MB = 1024 * 1024;
 const SUCCESS_TOAST_MS = 3000;
 const FOCUSABLE = 'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 
-// ── Session timer (idle auto-logout) ─────────────────────────────────────────
 let sessionInterval: ReturnType<typeof setInterval> | null = null;
 let activityHandler: (() => void) | null = null;
 let visibilityHandler: (() => void) | null = null;
@@ -93,7 +91,7 @@ export function clearSessionTimer() {
   }
 }
 
-// ── Modal registry ───────────────────────────────────────────────────────────
+// Modal registry
 // Each modal registers its overlay, a close fn, and a priority. Backdrop click
 // closes that modal; one shared keydown listener handles ESC (close) and Tab
 // (focus trap) for the topmost open modal (higher priority sits on top).
@@ -143,7 +141,7 @@ function handleModalKeydown(e: KeyboardEvent) {
   else if (e.key === 'Tab') trapFocus(top.overlay, e);
 }
 
-// ── DOM / data helpers ───────────────────────────────────────────────────────
+// Helpers
 export function getEl<T extends HTMLElement>(id: string): T {
   const el = document.getElementById(id);
   if (!el) throw new Error(`Missing element: #${id}`);

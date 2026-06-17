@@ -27,10 +27,12 @@ import Dashboard from '../../components/admin/Dashboard.astro';
     <Dashboard />
 
     <script>
-      import { initAdmin } from '../../lib/admin';
+      import { initAnnouncements } from '../../lib/adminAnnouncements';
       import { initGalleryAdmin } from '../../lib/adminGallery';
-      initAdmin();
+      import { initAdmin } from '../../lib/admin';
+      initAnnouncements();
       initGalleryAdmin();
+      initAdmin();
     </script>
   </body>
 </html>
